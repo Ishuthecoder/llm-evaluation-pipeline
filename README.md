@@ -38,6 +38,8 @@ Estimates response generation latency using message timestamps.
 ### 5️⃣ Cost  
 Estimates token-based inference cost using configurable pricing.
 
+---
+
 ## 🧠 High-Level Architecture
 
 ```bash
@@ -47,8 +49,10 @@ Context JSON ─┘
 
 ```
 
-# **Key Design Choice:**  
+### **Key Design Choice:**  
 The pipeline evaluates **only the context vectors actually used by the RAG system**, ensuring fair and accurate hallucination detection.
+
+---
 
 
 ## 🏗️ Repository Structure
@@ -70,6 +74,9 @@ llm-evaluation-pipeline/
 └── .gitignore
 
 ```
+
+---
+
 
 ## ⚙️ Local Setup Instructions
 
@@ -101,21 +108,24 @@ evaluation_report.json
 
 ```
 
-##📊 Evaluation Methodology
+---
 
-# 🔹 Relevance
+
+## 📊 Evaluation Methodology
+
+### 🔹 Relevance
 Uses a lightweight CrossEncoder model
 
 Produces a normalized score ∈ [0, 1]
 
-# 🔹 Completeness
+### 🔹 Completeness
 Keyword coverage heuristic
 
 Optimized for speed and interpretability
 
 Suitable for large-scale real-time evaluation
 
-# 🔹 Hallucination Detection
+### 🔹 Hallucination Detection
 Sentence-level verification
 
 Each sentence is checked for entailment against retrieved context
@@ -124,10 +134,13 @@ Implemented using a Natural Language Inference (NLI) model
 
 ⚠️ The hallucination metric is intentionally conservative to avoid false negatives in sensitive domains.
 
-# 🔹 Latency & Cost
+### 🔹 Latency & Cost
 Latency derived from timestamps
 
 Cost estimated using token counts and configurable per-token pricing
+
+---
+
 
 ## 📈 Example Output
 
@@ -149,28 +162,32 @@ Cost estimated using token counts and configurable per-token pricing
 
 ```
 
+---
+
 ## ⚖️ Design Decisions & Trade-offs
 
-# Why not use an LLM to evaluate another LLM?
+### Why not use an LLM to evaluate another LLM?
 High latency
 
 High operational cost
 
 Circular dependency
 
-# Why sentence-level hallucination detection?
+### Why sentence-level hallucination detection?
 Identifies exact unsupported claims
 
 More actionable for debugging and monitoring
 
 Commonly used in production trust & safety systems
 
-# Why heuristic completeness instead of generative scoring?
+### Why heuristic completeness instead of generative scoring?
 Faster
 
 Deterministic
 
 Scales to millions of evaluations per day
+
+---
 
 ## 🚀 Scalability & Production Readiness
 This pipeline is designed to scale efficiently:
@@ -183,10 +200,14 @@ This pipeline is designed to scale efficiently:
 
 ✅ Deterministic metrics for monitoring dashboards
 
+---
+
 ##📝 Notes
 Low faithfulness scores do not necessarily indicate poor responses — they indicate missing or weak grounding in retrieved context.
 
 This conservative behavior is intentional and desirable for safety-critical applications.
+
+---
 
 ##👤 Author
 
