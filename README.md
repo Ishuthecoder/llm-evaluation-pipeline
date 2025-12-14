@@ -202,14 +202,14 @@ This pipeline is designed to scale efficiently:
 
 ---
 
-##📝 Notes
+## 📝 Notes
 Low faithfulness scores do not necessarily indicate poor responses — they indicate missing or weak grounding in retrieved context.
 
 This conservative behavior is intentional and desirable for safety-critical applications.
 
 ---
 
-##👤 Author
+## 👤 Author
 
 Ishika Dubey
 Applied for Part-Time Internship at BeyondChats
